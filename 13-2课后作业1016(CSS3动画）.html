@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正经网站</title>
+	<style>
+	body{
+		padding:400px;
+		color:rgb(51, 133, 153);
+	}
+	span{
+		font-size: 100px;
+		font-family: "微软雅黑";
+		position: relative;
+	}
+	span:before,span:after{
+		content:attr(data-q);
+		position: absolute;
+		left: 0;
+		top: 0;
+		transform-origin: left center;
+		transition:all 0.5s linear 0s;
+	}
+	span:before{
+		color:rgb(255, 255, 255);
+		z-index: 3;
+		transform:rotateY(15deg);
+	}
+	span:after{
+		color:rgba(0, 0, 0, 0.3);
+		z-index:2;
+		transform: rotateY(0deg) scale(1.1, 1);
+	}
+	span:hover:before{
+		transform:rotateY(40deg) skew(0deg, 3deg);
+	}
+	span:hover:after{
+		transform:rotateY(40deg) skew(0deg,20deg);
+	}
+	</style>
+</head>
+<body>
+	<span data-q="嘤">嘤</span>
+	<span data-q="嘤">嘤</span>
+	<span data-q="嘤">嘤</span>
+</body>
+</html>

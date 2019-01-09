@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>scale()方法</title>
+<style type="text/css"> 
+div{
+	margin: 100px auto;
+	width:100px;
+	height:50px;
+overflow: 
+	background-color:#FF0;
+	border:1px solid black;
+	transition: all 2s ease;
+}
+div :hover{
+	margin:100px;
+	transform:scale(2,3);
+	-ms-transform:scale(2,3);        /* IE9浏览器兼容代码 */
+	-webkit-transform:scale(2,3);    /*Safari and Chrome浏览器兼容代码*/
+	-moz-transform:scale(2,3);       /*Firefox浏览器兼容代码*/
+	-o-transform:scale(2,3);        /*Opera浏览器兼容代码*/
+}
+</style>
+</head>
+<body>
+<div>我是原来的元素</div>
+<div id="div2">我是放大后的元素</div>
+</body>
+</html>
