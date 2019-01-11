@@ -1,0 +1,6 @@
+D:\webSite\45MVC\WebApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+D:\webSite\45MVC\WebApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+D:\webSite\45MVC\WebApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+D:\webSite\45MVC\WebApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+D:\webSite\45MVC\WebApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+D:\webSite\45MVC\WebApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
