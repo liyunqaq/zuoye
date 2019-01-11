@@ -1,0 +1,22 @@
+﻿@model MusicStore.Models.Order
+
+@{
+    ViewBag.Title = "AddressAndPayment";
+}
+
+@using (Html.BeginForm())
+{
+    <h3>付款信息确认</h3>
+    <input type="submit" value="提交订单" />
+    <fieldset>
+        <legend>配送信息</legend>
+        @Html.EditorForModel()
+    </fieldset>
+    <fieldset>
+        <legend>支付：</legend>
+        <p>商品优惠码：</p>
+        <div>@Html.TextBox("PromoCode")</div>
+    </fieldset>
+}
+
+

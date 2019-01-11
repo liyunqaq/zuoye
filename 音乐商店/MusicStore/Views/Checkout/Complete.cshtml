@@ -1,0 +1,17 @@
+﻿@model int
+@{
+    ViewBag.Title = "下单成功";
+}
+<h2>
+    下单成功
+</h2>
+<p>
+    您的单号为: @Model
+</p>
+<p>
+    @Html.ActionLink("返回主页>>", "Index", "Home")
+</p>
+<p>
+    @Html.ActionLink("继续购物>>", "Index", "Store")
+</p>
+

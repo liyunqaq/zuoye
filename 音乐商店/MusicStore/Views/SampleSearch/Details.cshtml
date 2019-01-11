@@ -1,0 +1,29 @@
+﻿@model MusicStore.Models.Album
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>详情信息</h2>
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend></legend>
+        @Html.HiddenFor(model => model.AlbumId)
+        <p>
+            @Html.Label("GenreId")
+            @Html.DisplayFor(model => model.Genre.Name)
+        </p>
+        <p>
+            @Html.Label("ArtistId")
+            @Html.DisplayFor(model => model.Artist.Name)
+        </p>
+        <p>
+            @Html.Label("Title")
+            @Html.DisplayFor(model => model.Title)
+        </p>
+        <p>
+            @Html.Label("价格")
+            @Html.DisplayFor(model => model.Price)
+        </p>
+    </fieldset>
+}

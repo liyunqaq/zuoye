@@ -1,0 +1,63 @@
+﻿﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <img src="~/Content/Images/home-showcase.png" />
+</div>
+
+
+<ul class="row list-unstyled" id="album-list">
+    @foreach (var album in Model)
+    {
+        <li class="col-lg-2 col-md-2 col-sm-2 col-xs-4 container">
+            <a href="@Url.Action("Details", "Admin", new { id = album.AlbumId })">
+                <img alt="@album.Title" src="@Url.Content( @album.AlbumArtUrl)" />
+                <h4>@album.Title</h4>
+            </a>
+        </li>
+    }
+</ul>
+<div class="panel panel-default">
+    <div class="panel-heading">搜索</div>
+    <div class="panel-body">
+        @using (Ajax.BeginForm("Search", "Home",
+                           new AjaxOptions
+                           {
+                               InsertionMode = InsertionMode.Replace,
+                               HttpMethod = "GET",
+                               OnFailure = "searchFailed",
+                               LoadingElementId = "ajax-loader",
+                               UpdateTargetId = "searchresults",
+                           }))
+        {
+            <input type="text" name="str" />
+            <input type="submit" value="搜索" />
+            <img id="ajax-loader"
+                 src="@Url.Content("~/Images/ajax-loader.gif")"
+                 style="display:none" />
+        }
+        <div id="searchresults"></div>
+    </div>
+</div>
+
+<div id="dailydeal">
+    @*ActionLink第一个参数指定链接文本，第二个参数是异步调用的方法名称，第四个参数提供Ajax辅助方法重载版本*@
+    @Ajax.ActionLink("戳此查看今日优惠!",
+        "DailyDeal",
+        null,
+        new AjaxOptions
+        //AjaxOptions指定用来自服务器的响应元素替换id值为dailydeal的元素
+        {
+            UpdateTargetId = "dailydeal",
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET"
+        },
+        //指定链接按钮使用的Bootstrap样式
+        new { @class = "btn btn-primary" })
+</div>
+
+
+@section Scripts {
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}

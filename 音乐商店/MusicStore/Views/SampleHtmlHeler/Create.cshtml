@@ -1,0 +1,60 @@
+﻿@model MusicStore.Models.Album
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>专辑新建页面</h2>
+
+@using (Html.BeginForm())
+{ //防csrf攻击：防跨站请求攻击
+    @Html.AntiForgeryToken()
+    //简单验证：当其值为真时，进行数据验证操作
+    @Html.ValidationSummary(true, "")
+    <div>
+        @Html.LabelFor(model => model.GenreId, "流派")
+        <div>
+            @Html.DropDownList("GenreId")
+            @*简单验证：数据验证操作
+                @Html.ValidationMessageFor(实体类成员，“警示消息”)*@
+            @Html.ValidationMessageFor(model => model.GenreId, "")
+        </div>
+    </div>
+
+    <div>
+        @*标签实现
+            @Html.LabelFor(实体成员 "显示文本")*@
+        @Html.LabelFor(model => model.ArtistId, "歌手")
+        <div>
+            @Html.DropDownList("ArtistId")
+            @Html.ValidationMessageFor(model => model.ArtistId, "")
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Title)
+        <div>
+            @*编辑文本框
+                @Html.EditorFor(实体成员)*@
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+    </div>
+    <div>
+        @Html.LabelFor(model => model.Price)
+        <div>
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.AlbumArtUrl)
+        <div>
+            @Html.EditorFor(model => model.AlbumArtUrl)
+            @Html.ValidationMessageFor(model => model.AlbumArtUrl)
+        </div>
+    </div>
+    <div>
+        <input type="submit" value="新增数据" />
+    </div>
+}

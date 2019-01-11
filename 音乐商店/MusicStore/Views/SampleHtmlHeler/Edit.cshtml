@@ -1,0 +1,47 @@
+﻿@model MusicStore.Models.Album
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@{
+    Html.BeginForm("Edit", "SampleHtmlHeler", FormMethod.Post);
+    @Html.ValidationSummary(true);
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>修改音乐专辑</legend>
+        @Html.HiddenFor(model => model.AlbumId, new { @AlbumId = Model.AlbumId })@*关键：通过路由机制实现AlbumId传值*@
+        @Html.ValidationMessageFor(model => model.AlbumId, "")
+        <p>
+            @Html.Label("GenreId")
+            @Html.DropDownList("GenreId", ViewBag.GenreId as SelectList)
+            @Html.ValidationMessageFor(model => model.GenreId, "")
+        </p>
+        <p>
+            @Html.Label("ArtistId")
+            @Html.DropDownList("ArtistId", ViewBag.ArtistId as SelectList)
+            @Html.ValidationMessageFor(model => model.ArtistId, "")
+        </p>
+        <p>
+            @Html.Label("Title")
+            @Html.TextBox("Title", Model.Title)
+            @Html.ValidationMessage("Title")
+            @Html.ValidationMessageFor(model => model.Title, "")
+        </p>
+        <p>
+            @Html.Label("Price")
+            @Html.TextBox("Price", Model.Price)
+
+            @Html.ValidationMessageFor(model => model.Price, "")
+        </p>
+        <p>
+            @Html.Label("AlbumArtUrl")
+            @Html.TextBox("AlbumArtUrl", Model.AlbumArtUrl)
+
+            @Html.ValidationMessageFor(model => model.AlbumArtUrl, "")
+        </p>
+        <input type="submit" value="保存" />
+    </fieldset>
+    Html.EndForm();
+}

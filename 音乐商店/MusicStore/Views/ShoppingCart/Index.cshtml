@@ -1,0 +1,113 @@
+﻿@model MusicStore.ViewModels.ShoppingCartViewModel
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "购物车";
+}
+
+@section Scripts{
+    <script type="text/javascript">
+
+                function delModal() {
+            $(".RemoveLink2").click(function () {
+                aaa = $(this).attr("data-id");
+                //alert(aaa);
+                $("#delID").text(aaa);
+                $("#delShopping").modal('show');
+            });
+        }
+
+        function test() {
+            $("#delShopping").modal('hide');
+        }
+
+        function delRecord() {
+            var recordIoDelete = $("#delID").text();
+            var PostToUrl = "/ShoppingCart/RemoveFromCart"
+
+            if (recordIoDelete != '') {
+                $.post(PostToUrl, { "id": recordIoDelete },
+                    function (data) {
+                        if (data.ItemCount == 0) {
+                            $('#row-' + data.DeleteId).fadeOut('slow');
+                        } else {
+                            $('#item-count-' + data.DeleteId).text(data.ItemCount);
+                        }
+                        $('#cart-total').text(data.CartTotal);
+                        $('#update-message').text(data.Message);
+                        $('#cart-status').text('Cart(' + data.CartCount + ')');
+                    });
+                $("#delShopping").modal('hide');
+                window.location.reload();
+            }
+        }
+</script>
+
+}
+
+
+
+<h2>
+    @User.Identity.GetUserName()的购物车
+</h2>
+<p class="button">
+    @Html.ActionLink("前往付款>>", "AddressAndPayment", "Checkout")
+</p>
+<p class="button">
+    @Html.ActionLink("继续购物>>", "Index", "Store")
+</p>
+<p class="button">
+    @Html.ActionLink("清空购物>>", "EmptyCart", "ShoppingCart")
+</p>
+<div id="update-message">
+
+</div>
+
+
+
+@*模态框弹窗内容*@
+<div class="modal fade" id="delShopping" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" name="asd">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                系统警告：
+            </div>
+            <div class="modal-body">
+                <h3 style="color:#f00">你确定要移除这张专辑吗？<span id="delID"></span></h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dissmiss="modal" onclick="test()">取消</button>
+                <button type="button" id="permit" class="btn btn-warning" onclick="delRecord()">移除</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<table id="cart-summary">
+    <tr>
+        <th>专辑名称</th>
+        <th>售价</th>
+        <th>数量</th>
+        <th>操作</th>
+    </tr>
+    @foreach (var item in Model.CartItems)
+    {
+        <tr>
+            <td>@Html.ActionLink(item.Album.Title, "Detials", "Store", new { id = item.AlbumId }, null)</td>
+            <td>@item.Album.Price</td>
+            <td>@item.Count</td>
+            <td>
+                <a href="#" class="RemoveLink2" data-id="@item.RecordId" data-toggle="model" data-target="#delShopping" onclick="delModal()" data-url=''>
+                    移除(双击)
+                </a>
+            </td>
+        </tr>
+    }
+    <tr>
+        <td>总金额：</td>
+        <td></td>
+        <td>@Model.CartTotal</td>
+        <td></td>
+    </tr>
+</table>

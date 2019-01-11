@@ -1,0 +1,53 @@
+﻿@model MusicStore.Models.User
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    //防CSRF攻击:防跨站请求攻击
+    @Html.AntiForgeryToken()
+    <div>
+        <h4>新增用户</h4>
+        <hr />
+        @*简单验证：当其值为真时，进行数据验证操作*@
+        @Html.ValidationSummary(true, "")
+        <div>
+            @*标签实现
+                @Html.LabelPor(实体成员,"显示文本")*@
+            @Html.LabelFor(model => model.UserName, "用户名")
+            <div>
+                @Html.EditorFor(model => model.UserName)
+                @*简单验证:数据验证操作
+                    @Html.ValidationMessageFor(实体类消息, "警告消息")*@
+
+                @Html.ValidationMessageFor(model => model.UserName, "")
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Password, "密码")
+
+            <div>
+                @Html.EditorFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password, "")
+
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Passwords, "密码")
+
+            <div>
+                @Html.EditorFor(model => model.Passwords)
+                @Html.ValidationMessageFor(model => model.Passwords, "")
+
+            </div>
+        </div>
+
+        <div>
+            <input type="submit" value="注册" />
+
+        </div>
+    </div>
+
+}

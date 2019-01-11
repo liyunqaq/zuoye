@@ -1,0 +1,101 @@
+﻿@model MusicStore.Models.Order
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    //防CSRF：防跨站请求攻击
+    @Html.AntiForgeryToken()
+}
+<div>
+    <h4>当前订单</h4>
+    <hr />
+    @*简单验证*@
+    @Html.ValidationSummary(true, "")
+    <div>
+        @Html.LabelFor(model => model.Username, "用户名")
+        <div>
+            @Html.EditorFor(model => model.Username)
+            @Html.ValidationMessageFor(model => model.Username)
+        </div>
+    </div>
+    <div>
+        @Html.LabelFor(model => model.FirstName, "姓")
+        <div>
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+    </div>
+    <div>
+        @Html.LabelFor(model => model.LastName, "名")
+        <div>
+            @Html.EditorFor(model => model.LastName)
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
+    </div>
+    <div>
+        @Html.LabelFor(model => model.Address, "地址")
+        <div>
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+    </div>
+    <div>
+        @Html.LabelFor(model => model.City, "城市")
+        <div>
+            @Html.EditorFor(model => model.City)
+            @Html.ValidationMessageFor(model => model.City)
+        </div>
+    </div>
+    <div>
+        @Html.LabelFor(model => model.State, "区")
+        <div>
+            @Html.EditorFor(model => model.State)
+            @Html.ValidationMessageFor(model => model.State)
+        </div>
+    </div>
+    <div>
+        @Html.LabelFor(model => model.PostalCode, "邮政编码")
+        <div>
+            @Html.EditorFor(model => model.PostalCode)
+            @Html.ValidationMessageFor(model => model.PostalCode)
+        </div>
+    </div>
+    <div>
+        @Html.LabelFor(model => model.Country, "国籍")
+        <div>
+            @Html.EditorFor(model => model.Country)
+            @Html.ValidationMessageFor(model => model.Country)
+        </div>
+    </div>
+    <div>
+        @Html.LabelFor(model => model.Phone, "电话")
+        <div>
+            @Html.EditorFor(model => model.Phone)
+            @Html.ValidationMessageFor(model => model.Phone)
+        </div>
+    </div>
+    <div>
+        @Html.LabelFor(model => model.Email, "电子邮箱")
+        <div>
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+    </div>
+    @*<div>
+            @Html.LabelFor(model => model.Total, "总金额")
+            <div>
+                @Html.EditorFor(model => model.Total)
+                @Html.ValidationMessageFor(model => model.Total)
+            </div>
+        </div>*@
+    @*<div>
+            @Html.LabelFor(model => model.OrderDate, "订单日期")
+            <div>
+                @Html.EditorFor(model => model.OrderDate)
+                @Html.ValidationMessageFor(model => model.OrderDate)
+            </div>
+        </div>*@
+</div>
